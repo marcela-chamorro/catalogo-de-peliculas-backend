@@ -1,4 +1,4 @@
-package unrn.model;
+package com.unrn.domain;
 
 import java.time.LocalDate;
 

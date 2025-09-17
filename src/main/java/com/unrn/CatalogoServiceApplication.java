@@ -1,4 +1,4 @@
-package com.unrn.catalogo.catalogo_service;
+package com.unrn;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

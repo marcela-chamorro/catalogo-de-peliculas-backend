@@ -3,6 +3,10 @@ package unrn.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import com.unrn.domain.Catalogo;
+import com.unrn.domain.CatalogoPelicula;
+import com.unrn.domain.Pelicula;
+
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;

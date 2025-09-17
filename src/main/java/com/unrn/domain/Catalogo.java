@@ -1,27 +1,39 @@
-package unrn.model;
+package com.unrn.domain;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import jakarta.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "catalogos")
 public class Catalogo {
     static final String ERROR_NOMBRE_VACIO = "El nombre del catálogo no puede estar vacío";
 
-    private final int id; // catalogo_id
-    private final String nombre;
-    private final String descripcion;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private  int Id; // catalogo_id
+   
+    @Column(name="nombre")
+    private  String nombre;
+    
+     @Column(name="descripcion")
+    private  String descripcion;
+   
     private LocalDateTime lastUpdate;
-    private final List<Pelicula> peliculas;
+   
+    private  List<Pelicula> peliculas;
 
-    public Catalogo(int id, String nombre, String descripcion) {
-        assertNombreValido(nombre);
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.lastUpdate = LocalDateTime.now();
-        this.peliculas = new ArrayList<>();
-    }
 
     private void assertNombreValido(String nombre) {
         if (nombre == null || nombre.isBlank())
@@ -45,9 +57,7 @@ public class Catalogo {
         this.lastUpdate = LocalDateTime.now();
     }
 
-    public int id() { return id; }
-    public String nombre() { return nombre; }
-    public String descripcion() { return descripcion; }
+
     public LocalDateTime lastUpdate() { return lastUpdate; }
     public List<Pelicula> peliculas() { return Collections.unmodifiableList(peliculas); }
 }
