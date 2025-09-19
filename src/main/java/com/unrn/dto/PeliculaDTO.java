@@ -1,13 +1,20 @@
 package com.unrn.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class PeliculaDTO {
 
     static final String ERROR_ID_INVALIDO = "El id de la película debe ser mayor que cero";
     static final String ERROR_TITULO_VACIO = "El título de la película no puede estar vacío";
 
-    private final int id;
-    private final String titulo;
-    public Object nombre;
+    private int id;
+    private String titulo;
+    public String nombre;
+    public int anio;
+    public String director;
 
     public PeliculaDTO(int id, String titulo) {
         if (id <= 0) throw new RuntimeException(ERROR_ID_INVALIDO);

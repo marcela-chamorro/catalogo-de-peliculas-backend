@@ -6,26 +6,19 @@ package com.unrn.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "peliculas")
 public class PeliculaRef {
-
     @Id
-    @Column(name = "pelicula_id")
-    private int id;
+    private Integer idPelicula;   // ID real de la película en el microservicio de películas
+    private String nombre;
 
-    private String titulo;
+    public PeliculaRef() {}
 
-    public int id() { return id; }
-    public String titulo() { return titulo; }
-
-    protected PeliculaRef() {
-        // requerido por JPA
+    public PeliculaRef(Integer idPelicula, String nombre) {
+        this.idPelicula = idPelicula;
+        this.nombre = nombre;
     }
+}
 
-    public PeliculaRef(int id, String titulo) {
-        this.id = id;
-        this.titulo = titulo;
-    }
 
    
-}
+

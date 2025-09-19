@@ -54,7 +54,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	
 
 	    <!-- Swagger/OpenAPI -->
 		 <dependency>
@@ -70,11 +69,6 @@
 
     </dependencies>
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 0b13078 (Se agrego el Suscribe y se actualizaron los demas archivos (falta probar))
 	<build>
 		<plugins>
 			<plugin>

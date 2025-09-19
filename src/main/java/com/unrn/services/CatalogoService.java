@@ -3,10 +3,13 @@
 
 package com.unrn.services;
 
+import com.unrn.domain.PeliculaRef;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.unrn.domain.Catalogos;
+import com.unrn.domain.Pelicula;
 import com.unrn.dto.CatalogoDTO;
 import com.unrn.dto.PeliculaDTO;
 import com.unrn.repository.CatalogoRepository;
@@ -16,14 +19,10 @@ import com.unrn.repository.PeliculaRefRepository;
 @Transactional
 public class CatalogoService {
 
+    @Autowired()
     private CatalogoRepository catalogoRepository;
+    @Autowired()
     private PeliculaRefRepository peliculaRefRepository;
-
-    // Constructor
-    public CatalogoService(CatalogoRepository catalogoRepository, PeliculaRefRepository peliculaRefRepository) {
-        this.catalogoRepository = catalogoRepository;
-        this.peliculaRefRepository = peliculaRefRepository;
-    }
 
     // Método para guardar un catálogo
     public CatalogoDTO saveCatalogo(CatalogoDTO catalogoDTO) {
@@ -49,13 +48,12 @@ public class CatalogoService {
     }
 
     public void agregarPeliculaDesdeEvento(PeliculaDTO peliculaDTO) {
-        // Convertimos el DTO a entidad
-        Pelicula pelicula = new Pelicula(
-                peliculaDTO.nombre, // si tus campos son públicos
-                peliculaDTO.director,
-                peliculaDTO.año);
+        PeliculaRef ref = new PeliculaRef(
+                peliculaDTO.getId(),      // id que viene del microservicio de películas
+                peliculaDTO.getNombre()
+        );
 
-        // Guardamos la película en la base de datos
-        peliculaRepository.save(pelicula);
+        peliculaRefRepository.save(ref);
     }
+
 }
