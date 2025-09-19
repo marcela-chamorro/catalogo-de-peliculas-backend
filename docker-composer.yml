@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  catalogo-app:
+    build: .
+    container_name: catalogo-app-container
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://catalogo-db:5432/catalogo_db
+      SPRING_DATASOURCE_USERNAME: user_catalogo
+      SPRING_DATASOURCE_PASSWORD: pass_catalogo
+    depends_on:
+      - catalogo-db
+
+  catalogo-db:
+    image: postgres:13-alpine
+    container_name: catalogo-db-container
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: catalogo_db
+      POSTGRES_USER: user_catalogo
+      POSTGRES_PASSWORD: pass_catalogo
+    volumes:
+      - catalogo-data:/var/lib/postgresql/data
+
+volumes:
+catalogo-data:
